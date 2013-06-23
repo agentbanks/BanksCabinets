@@ -57,7 +57,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(90, 70);
+            this.label1.Location = new System.Drawing.Point(90, 97);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 123;
@@ -66,7 +66,7 @@
             // jobNameTextBox
             // 
             this.jobNameTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jobNameTextBox.Location = new System.Drawing.Point(164, 67);
+            this.jobNameTextBox.Location = new System.Drawing.Point(164, 94);
             this.jobNameTextBox.Name = "jobNameTextBox";
             this.jobNameTextBox.Size = new System.Drawing.Size(273, 21);
             this.jobNameTextBox.TabIndex = 0;
@@ -74,7 +74,7 @@
             // saveJobButton
             // 
             this.saveJobButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveJobButton.Location = new System.Drawing.Point(189, 333);
+            this.saveJobButton.Location = new System.Drawing.Point(189, 338);
             this.saveJobButton.Name = "saveJobButton";
             this.saveJobButton.Size = new System.Drawing.Size(87, 23);
             this.saveJobButton.TabIndex = 10;
@@ -85,7 +85,7 @@
             // cancelButton
             // 
             this.cancelButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.Location = new System.Drawing.Point(293, 333);
+            this.cancelButton.Location = new System.Drawing.Point(293, 338);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(87, 23);
             this.cancelButton.TabIndex = 11;
@@ -165,7 +165,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(65, 297);
+            this.label5.Location = new System.Drawing.Point(65, 302);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(93, 13);
             this.label5.TabIndex = 100;
@@ -174,7 +174,7 @@
             // cityTextBox
             // 
             this.cityTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cityTextBox.Location = new System.Drawing.Point(164, 219);
+            this.cityTextBox.Location = new System.Drawing.Point(164, 224);
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(273, 21);
             this.cityTextBox.TabIndex = 6;
@@ -193,7 +193,7 @@
             // stateTextBox
             // 
             this.stateTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stateTextBox.Location = new System.Drawing.Point(164, 243);
+            this.stateTextBox.Location = new System.Drawing.Point(164, 248);
             this.stateTextBox.MaxLength = 2;
             this.stateTextBox.Name = "stateTextBox";
             this.stateTextBox.Size = new System.Drawing.Size(273, 21);
@@ -204,7 +204,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(116, 246);
+            this.label7.Location = new System.Drawing.Point(116, 251);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 13);
             this.label7.TabIndex = 14;
@@ -213,7 +213,7 @@
             // zipTextBox
             // 
             this.zipTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zipTextBox.Location = new System.Drawing.Point(164, 268);
+            this.zipTextBox.Location = new System.Drawing.Point(164, 273);
             this.zipTextBox.MaxLength = 5;
             this.zipTextBox.Name = "zipTextBox";
             this.zipTextBox.Size = new System.Drawing.Size(273, 21);
@@ -225,7 +225,7 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(128, 271);
+            this.label8.Location = new System.Drawing.Point(128, 276);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 13);
             this.label8.TabIndex = 16;
@@ -234,7 +234,7 @@
             // emailTextBox
             // 
             this.emailTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTextBox.Location = new System.Drawing.Point(164, 294);
+            this.emailTextBox.Location = new System.Drawing.Point(164, 299);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(273, 21);
             this.emailTextBox.TabIndex = 9;
@@ -244,7 +244,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(123, 222);
+            this.label9.Location = new System.Drawing.Point(123, 227);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 18;
@@ -253,7 +253,7 @@
             // contractorTextBox
             // 
             this.contractorTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contractorTextBox.Location = new System.Drawing.Point(164, 94);
+            this.contractorTextBox.Location = new System.Drawing.Point(164, 37);
             this.contractorTextBox.Name = "contractorTextBox";
             this.contractorTextBox.Size = new System.Drawing.Size(273, 21);
             this.contractorTextBox.TabIndex = 1;
@@ -263,7 +263,7 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(85, 97);
+            this.label10.Location = new System.Drawing.Point(85, 40);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(73, 13);
             this.label10.TabIndex = 20;

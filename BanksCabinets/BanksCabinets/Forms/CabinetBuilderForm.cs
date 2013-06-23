@@ -16,7 +16,9 @@ namespace BanksCabinets.Forms
     {
 
         #region Database
-        static string connString = "Server=50.87.150.162;Port=3306;Database=peynadov_bankscabinets;Uid=peynadov_agent;password=codybanks";
+        //static string connString = "Server=50.87.150.162;Port=3306;Database=BanksCabinets;Uid=peynadov_agent;password=codybanks";
+        //static string connString = "Server=127.0.0.1;Port=3306;Database=BanksCabinets;Uid=agent;password=codybanks";
+        static string connString = "Server=bankscabinets.cmm7xidttue2.us-west-2.rds.amazonaws.com;Port=3306;Database=bankscabinets;Uid=agent;password=codybanks";
         static MySqlConnection conn = new MySqlConnection(connString);
         MySqlCommand command = conn.CreateCommand();
         #endregion
@@ -28,7 +30,7 @@ namespace BanksCabinets.Forms
         string firstName = string.Empty;
         string lastName = string.Empty;
         string contractor = string.Empty;
-        int phoneNumber = -1;
+        long phoneNumber = -1;
         string address = string.Empty;
         string city = string.Empty;
         string state = string.Empty;
@@ -390,7 +392,8 @@ namespace BanksCabinets.Forms
 
         private void openJobButton_Click(object sender, EventArgs e)
         {
-            OpenJobForm form = new OpenJobForm();
+            //OpenJobForm form = new OpenJobForm();
+            OpenJobForm form = new OpenJobForm(connString, conn, command);
             form.ShowDialog();
             currentJob = form.GetJob();
             readJobData();
@@ -420,7 +423,7 @@ namespace BanksCabinets.Forms
                 city = reader["city"].ToString();
                 state = reader["state"].ToString();
                 zip = Int32.Parse(reader["zip"].ToString());
-                phoneNumber= Int32.Parse(reader["phone"].ToString());
+                phoneNumber= Int64.Parse(reader["phone"].ToString());
                 numCabinets= Int32.Parse(reader["numcabinets"].ToString());
 
             }
@@ -486,8 +489,10 @@ namespace BanksCabinets.Forms
         {
             bool allFieldsCompleted = false;
 
-            //if (!string.IsNullOrEmpty(selectedCabinetType) && materialComboBox.SelectedIndex > -1) PEY!!!!
-            return true;
+            if (!string.IsNullOrEmpty(selectedCabinetType) && materialComboBox.SelectedIndex > -1)
+                return true;
+            else
+                return false;
         }
 
       
