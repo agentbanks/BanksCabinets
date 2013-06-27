@@ -507,7 +507,7 @@
             this.openJobButton.Name = "openJobButton";
             this.openJobButton.Size = new System.Drawing.Size(148, 23);
             this.openJobButton.TabIndex = 393;
-            this.openJobButton.Text = "Open Job";
+            this.openJobButton.Text = "Jobs";
             this.openJobButton.UseVisualStyleBackColor = true;
             this.openJobButton.Click += new System.EventHandler(this.openJobButton_Click);
             // 
@@ -1638,7 +1638,7 @@
             this.label43.AutoSize = true;
             this.label43.Location = new System.Drawing.Point(1032, 274);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(53, 13);
+            this.label43.Size = new System.Drawing.Size(52, 13);
             this.label43.TabIndex = 269;
             this.label43.Text = "Top Rail";
             // 
@@ -1760,7 +1760,7 @@
             this.label30.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.Location = new System.Drawing.Point(1007, 209);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(135, 16);
+            this.label30.Size = new System.Drawing.Size(134, 16);
             this.label30.TabIndex = 256;
             this.label30.Text = "Face Frame Cutout";
             // 
@@ -1779,7 +1779,7 @@
             this.removeTemplateLinkLabel.AutoSize = true;
             this.removeTemplateLinkLabel.Location = new System.Drawing.Point(533, 845);
             this.removeTemplateLinkLabel.Name = "removeTemplateLinkLabel";
-            this.removeTemplateLinkLabel.Size = new System.Drawing.Size(107, 13);
+            this.removeTemplateLinkLabel.Size = new System.Drawing.Size(105, 13);
             this.removeTemplateLinkLabel.TabIndex = 254;
             this.removeTemplateLinkLabel.TabStop = true;
             this.removeTemplateLinkLabel.Text = "RemoveTemplate";
@@ -1986,7 +1986,7 @@
             this.toeKickCheckBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toeKickCheckBox.Location = new System.Drawing.Point(156, 692);
             this.toeKickCheckBox.Name = "toeKickCheckBox";
-            this.toeKickCheckBox.Size = new System.Drawing.Size(83, 17);
+            this.toeKickCheckBox.Size = new System.Drawing.Size(82, 17);
             this.toeKickCheckBox.TabIndex = 231;
             this.toeKickCheckBox.Text = "Toe Kick  ";
             this.toeKickCheckBox.UseVisualStyleBackColor = true;
@@ -2133,7 +2133,7 @@
             this.label12.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(416, 598);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 13);
+            this.label12.Size = new System.Drawing.Size(52, 13);
             this.label12.TabIndex = 214;
             this.label12.Text = "Top Rail";
             // 
@@ -2226,7 +2226,7 @@
             this.label5.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(141, 356);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 13);
+            this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 205;
             this.label5.Text = "Templates";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -2237,7 +2237,7 @@
             this.label4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(124, 317);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 13);
+            this.label4.Size = new System.Drawing.Size(82, 13);
             this.label4.TabIndex = 204;
             this.label4.Text = "Cabinet Type";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;

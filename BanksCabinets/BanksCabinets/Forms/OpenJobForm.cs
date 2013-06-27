@@ -20,7 +20,9 @@ namespace BanksCabinets.Forms
 
         #endregion
 
-        string job = "";
+        public string job = "";
+        string selectedContractor = "";
+
         public OpenJobForm(string connString, MySqlConnection conn, MySqlCommand command)
         {
             this.connString = connString;
@@ -28,6 +30,7 @@ namespace BanksCabinets.Forms
             this.command = command;
 
             InitializeComponent();
+            openJobButton.Enabled = false;
             //query database for jobs and list in box
             //See if I really need another connection
 
@@ -39,13 +42,13 @@ namespace BanksCabinets.Forms
             {
                 MessageBox.Show(ex.ToString());
             }
-            command.CommandText = "Select jobname from customer";
+            command.CommandText = "Select distinct contractor from customer order by contractor";
 
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
 
-                jobListBox.Items.Add(reader["jobname"].ToString());
+                contractorComboBox.Items.Add(reader["contractor"].ToString());
                
 
             }
@@ -54,6 +57,43 @@ namespace BanksCabinets.Forms
 
 
 
+        }
+
+        private void contractorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            //do something
+            openJobButton.Enabled = false;
+            jobListBox.Items.Clear();
+
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            selectedContractor = contractorComboBox.Items[contractorComboBox.SelectedIndex].ToString();
+            command.CommandText = "SELECT * from customer where contractor = '" + selectedContractor + "' order by jobname";
+
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+
+                jobListBox.Items.Add(reader["jobname"].ToString());
+
+
+            }
+
+            conn.Close();
+            
+
+        }
+
+        private void jobSelected_Click(object sender, EventArgs e)
+        {
+            openJobButton.Enabled = true;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

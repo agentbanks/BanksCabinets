@@ -99,7 +99,7 @@ namespace BanksCabinets.Forms
         public CabinetBuilderForm()
         {
             InitializeComponent();
-
+            this.WindowState = FormWindowState.Maximized;
             //ReadJobInfo(some job number);
             
             CreateCabinetButtons();
@@ -395,7 +395,7 @@ namespace BanksCabinets.Forms
             //OpenJobForm form = new OpenJobForm();
             OpenJobForm form = new OpenJobForm(connString, conn, command);
             form.ShowDialog();
-            currentJob = form.GetJob();
+            currentJob = form.job;
             readJobData();
         }
 
