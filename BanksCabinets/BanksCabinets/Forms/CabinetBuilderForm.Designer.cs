@@ -2305,9 +2305,12 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = global::BanksCabinets.Properties.Resources.banksCabinetsAppUI;
+            this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(6, 6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(214, 142);
+            this.pictureBox1.Size = new System.Drawing.Size(200, 107);
             this.pictureBox1.TabIndex = 197;
             this.pictureBox1.TabStop = false;
             // 

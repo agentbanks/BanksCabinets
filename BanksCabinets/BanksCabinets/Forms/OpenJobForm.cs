@@ -42,24 +42,95 @@ namespace BanksCabinets.Forms
             {
                 MessageBox.Show(ex.ToString());
             }
-            command.CommandText = "Select distinct contractor from customer order by contractor";
+            command.CommandText = "Select contractor,jobname from customer order by contractor";
 
             MySqlDataReader reader = command.ExecuteReader();
+            int testint = 0;
+            String currentContractor = "";
+            String currentJobname = "";
+            TreeNode node = new TreeNode(currentContractor);
             while (reader.Read())
             {
+                
+               // contractorComboBox.Items.Add(reader["contractor"].ToString());
+                currentContractor = reader["contractor"].ToString();
+                currentJobname = reader["jobname"].ToString();
+                
+                
+                if (ContractorTreeView.Nodes.Count == 0)
+                {
 
-                contractorComboBox.Items.Add(reader["contractor"].ToString());
-               
+                    node = new TreeNode(currentContractor);
+                    node.Name = currentContractor;
+                    ContractorTreeView.Nodes.Add(node);
+                   
+                    node.Nodes.Add(currentJobname);
+                    
+                }
+                else
+                {
+                    
+                    TreeNode[] nodesFound = ContractorTreeView.Nodes.Find(currentContractor, false);
+                    if (nodesFound.GetLength(0) == 0)
+                    {
+                        
+                        
+                        node = new TreeNode(currentContractor);
+                        node.Name = currentContractor;
+                        node.Nodes.Add(currentJobname);
+                        //node.Nodes.Add(node.Name.ToString());//test
+                        ContractorTreeView.Nodes.Add(node);
+                    }
+                    else
+                    {
+                        nodesFound[nodesFound.GetLength(0) - 1].Nodes.Add(currentJobname);
+                        //nodesFound[nodesFound.GetLength(0) - 1].Nodes.Add(currentContractor);//test
+                    }
 
+                    }                
+            
+                testint++;
+             
             }
 
             conn.Close();
+
+            /*foreach (TreeNode tn in ContractorTreeView.Nodes)
+            {
+                //tn.Nodes.Add("test");
+
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+
+                String contractorNodeName = tn.Text.ToString();
+                command.CommandText = "Select jobname from customer where contractor='"+contractorNodeName+"' order by jobname";
+
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    // contractorComboBox.Items.Add(reader["contractor"].ToString());
+                    tn.Nodes.Add(reader["jobname"].ToString());
+                   // tn.Nodes.Add(contractorNodeName); FOR TESTING, adds the node name as a child
+
+                }
+
+                conn.Close();
+            }*/
+
+            
 
 
 
         }
 
-        private void contractorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+       /* private void contractorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             //do something
@@ -89,6 +160,38 @@ namespace BanksCabinets.Forms
             conn.Close();
             
 
+        }*/
+
+         private void contractorTreeView_AfterSelect(object sender, EventArgs e)
+        {
+
+            //do something
+            openJobButton.Enabled = false;
+           // jobListBox.Items.Clear();
+
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            selectedContractor = ContractorTreeView.SelectedNode.Name.ToString();
+            command.CommandText = "SELECT * from customer where contractor = '" + selectedContractor + "' order by jobname";
+
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+
+                //jobListBox.Items.Add(reader["jobname"].ToString());
+
+
+            }
+
+            conn.Close();
+            
+
         }
 
         private void jobSelected_Click(object sender, EventArgs e)
@@ -104,7 +207,7 @@ namespace BanksCabinets.Forms
         private void openJobButton_Click(object sender, EventArgs e)
         {
             string job = "";
-            job = jobListBox.SelectedItem.ToString();
+           // job = jobListBox.SelectedItem.ToString();
             this.Close();
         }
 

@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.jobListBox = new System.Windows.Forms.ListBox();
             this.openJobButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.contractorComboBox = new System.Windows.Forms.ComboBox();
+            this.ContractorTreeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // label1
@@ -44,15 +44,6 @@
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Past Jobs:";
-            // 
-            // jobListBox
-            // 
-            this.jobListBox.FormattingEnabled = true;
-            this.jobListBox.Location = new System.Drawing.Point(46, 113);
-            this.jobListBox.Name = "jobListBox";
-            this.jobListBox.Size = new System.Drawing.Size(725, 290);
-            this.jobListBox.TabIndex = 1;
-            this.jobListBox.SelectedIndexChanged += new System.EventHandler(this.jobSelected_Click);
             // 
             // openJobButton
             // 
@@ -92,18 +83,26 @@
             this.contractorComboBox.Name = "contractorComboBox";
             this.contractorComboBox.Size = new System.Drawing.Size(413, 21);
             this.contractorComboBox.TabIndex = 5;
-            this.contractorComboBox.SelectedIndexChanged += new System.EventHandler(this.contractorComboBox_SelectedIndexChanged);
+           // this.contractorComboBox.SelectedIndexChanged += new System.EventHandler(this.contractorComboBox_SelectedIndexChanged);
+            // 
+            // ContractorTreeView
+            // 
+            this.ContractorTreeView.Location = new System.Drawing.Point(46, 133);
+            this.ContractorTreeView.Name = "ContractorTreeView";
+            this.ContractorTreeView.Size = new System.Drawing.Size(697, 263);
+            this.ContractorTreeView.TabIndex = 6;
+            this.ContractorTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.contractorTreeView_AfterSelect);
             // 
             // OpenJobForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(829, 495);
+            this.Controls.Add(this.ContractorTreeView);
             this.Controls.Add(this.contractorComboBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.openJobButton);
-            this.Controls.Add(this.jobListBox);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "OpenJobForm";
@@ -116,10 +115,10 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox jobListBox;
         private System.Windows.Forms.Button openJobButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox contractorComboBox;
+        private System.Windows.Forms.TreeView ContractorTreeView;
     }
 }
