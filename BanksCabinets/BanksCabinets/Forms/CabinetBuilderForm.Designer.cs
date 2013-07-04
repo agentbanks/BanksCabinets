@@ -227,11 +227,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.removeCabinetButton = new System.Windows.Forms.Button();
             this.CabinetsLabel = new System.Windows.Forms.Label();
-            this.jobNameTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.jobNameLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -250,6 +250,7 @@
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
+            this.tabPage1.Controls.Add(this.jobNameLabel);
             this.tabPage1.Controls.Add(this.removeMaterialButton);
             this.tabPage1.Controls.Add(this.addMaterialButton);
             this.tabPage1.Controls.Add(this.materialComboBox);
@@ -447,7 +448,6 @@
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.removeCabinetButton);
             this.tabPage1.Controls.Add(this.CabinetsLabel);
-            this.tabPage1.Controls.Add(this.jobNameTextBox);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.pictureBox1);
@@ -507,7 +507,7 @@
             this.openJobButton.Name = "openJobButton";
             this.openJobButton.Size = new System.Drawing.Size(148, 23);
             this.openJobButton.TabIndex = 393;
-            this.openJobButton.Text = "Jobs";
+            this.openJobButton.Text = "Open Job";
             this.openJobButton.UseVisualStyleBackColor = true;
             this.openJobButton.Click += new System.EventHandler(this.openJobButton_Click);
             // 
@@ -2273,14 +2273,6 @@
             this.CabinetsLabel.Text = "Cabinets";
             this.CabinetsLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // jobNameTextBox
-            // 
-            this.jobNameTextBox.Location = new System.Drawing.Point(225, 176);
-            this.jobNameTextBox.Name = "jobNameTextBox";
-            this.jobNameTextBox.ReadOnly = true;
-            this.jobNameTextBox.Size = new System.Drawing.Size(415, 21);
-            this.jobNameTextBox.TabIndex = 200;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -2324,6 +2316,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Cabinet Standards";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // jobNameLabel
+            // 
+            this.jobNameLabel.AutoSize = true;
+            this.jobNameLabel.Location = new System.Drawing.Point(225, 175);
+            this.jobNameLabel.Name = "jobNameLabel";
+            this.jobNameLabel.Size = new System.Drawing.Size(140, 13);
+            this.jobNameLabel.TabIndex = 398;
+            this.jobNameLabel.Text = "(Open or Create a Job)";
             // 
             // CabinetBuilderForm
             // 
@@ -2541,7 +2542,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button removeCabinetButton;
         private System.Windows.Forms.Label CabinetsLabel;
-        private System.Windows.Forms.TextBox jobNameTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -2552,6 +2552,7 @@
         private System.Windows.Forms.ComboBox materialComboBox;
         private System.Windows.Forms.Button removeMaterialButton;
         private System.Windows.Forms.Button addMaterialButton;
+        private System.Windows.Forms.Label jobNameLabel;
 
 
     }

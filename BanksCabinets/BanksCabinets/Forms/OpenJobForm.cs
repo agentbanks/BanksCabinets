@@ -21,7 +21,10 @@ namespace BanksCabinets.Forms
         #endregion
 
         public string job = "";
-        string selectedContractor = "";
+        string searchString = "";
+
+        TreeNode[] fullTree;
+        
 
         public OpenJobForm(string connString, MySqlConnection conn, MySqlCommand command)
         {
@@ -123,10 +126,81 @@ namespace BanksCabinets.Forms
 
                 conn.Close();
             }*/
+            fullTree = new TreeNode[ContractorTreeView.Nodes.Count];
+            ContractorTreeView.Nodes.CopyTo(fullTree, 0);
+
 
             
+        }
 
+        private void searchStringOnTree(object sender, EventArgs e)
+        {
+            TreeNode[] searchTree;
+            List<TreeNode> searchList = new List<TreeNode>();
+            searchString = searchBox.Text.ToLower();
+            
+            if (searchString != "")
+            {
+               // int searchIndex = 0;
+               // TreeNode[] nodesFound = ContractorTreeView.Nodes.Find(searchString, false);
+                //TreeNode[] nodesFound = new TreeNode[fullTree.Length];
+                //searchTree = new TreeNode[fullTree.Length];
 
+                foreach(TreeNode tn in fullTree)
+                {
+
+                    if (contractorRadioButton.Checked == true)
+                    {
+                        if (tn.Name.ToLower().StartsWith(searchString))
+                        {
+                            //searchTree[searchIndex] = tn;
+                            searchList.Add(tn);
+                           // searchIndex++;
+                        }
+                    }
+                    else
+                    {
+                        foreach (TreeNode tn2 in tn.Nodes)
+                        {
+                            if (tn2.Text.ToLower().StartsWith(searchString))
+                            {
+                                //searchTree[searchIndex] = tn;
+                                if (searchList.Contains(tn2.Parent) == false)
+                                {
+                                    searchList.Add(tn2.Parent);
+                                }
+                               // searchIndex++;
+                            }
+                        }
+                    }
+                }
+
+                searchTree = new TreeNode[searchList.Count];
+                searchTree = searchList.ToArray();
+               // searchTree = nodesFound;
+                //MessageBox.Show(searchTree[searchIndex-1].Name.ToString());
+
+                if (searchTree != null)
+                {
+                    
+                    try
+                    {
+                        ContractorTreeView.Nodes.Clear();
+                        ContractorTreeView.Nodes.AddRange(searchTree);
+                        ContractorTreeView.ExpandAll();
+                    }
+                    catch (ArgumentNullException)
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                ContractorTreeView.Nodes.Clear();
+                ContractorTreeView.Nodes.AddRange(fullTree);
+                ContractorTreeView.CollapseAll();
+            }
 
         }
 
@@ -164,32 +238,16 @@ namespace BanksCabinets.Forms
 
          private void contractorTreeView_AfterSelect(object sender, EventArgs e)
         {
-
-            //do something
             openJobButton.Enabled = false;
+            //do something
+             if (ContractorTreeView.SelectedNode.Level == 1)
+             {
+            job = ContractorTreeView.SelectedNode.Text;
+            openJobButton.Enabled = true;
+            //MessageBox.Show(ContractorTreeView.SelectedNode.Level.ToString());
+             }
            // jobListBox.Items.Clear();
 
-            try
-            {
-                conn.Open();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            selectedContractor = ContractorTreeView.SelectedNode.Name.ToString();
-            command.CommandText = "SELECT * from customer where contractor = '" + selectedContractor + "' order by jobname";
-
-            MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-
-                //jobListBox.Items.Add(reader["jobname"].ToString());
-
-
-            }
-
-            conn.Close();
             
 
         }
@@ -206,8 +264,10 @@ namespace BanksCabinets.Forms
 
         private void openJobButton_Click(object sender, EventArgs e)
         {
-            string job = "";
-           // job = jobListBox.SelectedItem.ToString();
+            //string job = "";
+            //job = ContractorTreeView.SelectedNode.Name;
+           // job = "returned job";
+            
             this.Close();
         }
 

@@ -48,8 +48,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.contractorTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.contractorComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -73,6 +73,7 @@
             // 
             // saveJobButton
             // 
+            this.saveJobButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.saveJobButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveJobButton.Location = new System.Drawing.Point(189, 338);
             this.saveJobButton.Name = "saveJobButton";
@@ -84,6 +85,7 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelButton.Location = new System.Drawing.Point(293, 338);
             this.cancelButton.Name = "cancelButton";
@@ -250,14 +252,6 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "City:";
             // 
-            // contractorTextBox
-            // 
-            this.contractorTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.contractorTextBox.Location = new System.Drawing.Point(164, 37);
-            this.contractorTextBox.Name = "contractorTextBox";
-            this.contractorTextBox.Size = new System.Drawing.Size(286, 21);
-            this.contractorTextBox.TabIndex = 1;
-            // 
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -269,12 +263,22 @@
             this.label10.TabIndex = 20;
             this.label10.Text = "Contractor:";
             // 
+            // contractorComboBox
+            // 
+            this.contractorComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.contractorComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.contractorComboBox.FormattingEnabled = true;
+            this.contractorComboBox.Location = new System.Drawing.Point(171, 39);
+            this.contractorComboBox.Name = "contractorComboBox";
+            this.contractorComboBox.Size = new System.Drawing.Size(232, 21);
+            this.contractorComboBox.TabIndex = 124;
+            // 
             // NewJobForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 460);
-            this.Controls.Add(this.contractorTextBox);
+            this.Controls.Add(this.contractorComboBox);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.label9);
@@ -326,7 +330,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox contractorTextBox;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox contractorComboBox;
     }
 }

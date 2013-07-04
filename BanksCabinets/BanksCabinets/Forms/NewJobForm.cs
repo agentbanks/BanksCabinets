@@ -13,6 +13,7 @@ namespace BanksCabinets.Forms
     public partial class NewJobForm : Form
     {
         string job = "";
+        string contractor = "";
         
         #region Database
         string connString;
@@ -27,6 +28,27 @@ namespace BanksCabinets.Forms
             this.conn = conn;
             this.command = command;
             InitializeComponent();
+
+
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            command.CommandText = "Select distinct contractor from customer order by contractor";
+
+            MySqlDataReader reader = command.ExecuteReader();
+            
+          
+            while (reader.Read())
+            {
+
+                 contractorComboBox.Items.Add(reader["contractor"].ToString());
+            }
+            conn.Close();
         }
 
         private void saveJobButton_Click(object sender, EventArgs e)
@@ -38,6 +60,7 @@ namespace BanksCabinets.Forms
             //    + "values (
 
             job = jobNameTextBox.Text;
+            contractor = contractorComboBox.Text;
 
             bool isFormComplete = CheckInput();
             bool isUnique = CheckUniqueJobName();
@@ -45,7 +68,7 @@ namespace BanksCabinets.Forms
             if (isFormComplete && isUnique)
             {
                 job = jobNameTextBox.Text;
-                
+               // contractor = contractorComboBox.Text;
                 if (string.IsNullOrEmpty(zipTextBox.Text))
                     zipTextBox.Text = "0";
                 if (string.IsNullOrEmpty(phoneNumberTextBox.Text))
@@ -53,7 +76,7 @@ namespace BanksCabinets.Forms
 
                 //command.CommandText = "INSERT INTO customer (jobname) values ('"+ jobNameTextBox.Text +"' )";
                 command.CommandText = "INSERT INTO customer (contractor, jobname, firstname, lastname, address, city, state, zip, phone, email) "
-                    + "values ('" + contractorTextBox.Text + "', '" + jobNameTextBox.Text + "', '" + firstNameTextBox.Text + "', '" + lastNameTextBox.Text + "', '" + addressTextBox.Text + "', '"
+                    + "values ('" + contractorComboBox.Text + "', '" + jobNameTextBox.Text + "', '" + firstNameTextBox.Text + "', '" + lastNameTextBox.Text + "', '" + addressTextBox.Text + "', '"
                     + cityTextBox.Text + "', '" + stateTextBox.Text + "', '" + zipTextBox.Text + "', '" + phoneNumberTextBox.Text + "', '" + emailTextBox.Text + "')";
                 
                 try
@@ -100,7 +123,8 @@ namespace BanksCabinets.Forms
         {
             bool isUnique = false;
             string newJobName = "";
-            command.CommandText = "Select jobname from customer where jobname = '" + job +"'";
+            command.CommandText = "Select jobname from customer where jobname = '" + job + "'";
+           // command.CommandText = "Select jobname from customer where jobname = '" + job + "' and contractor = '" + contractor + "'";
 
             try
             {

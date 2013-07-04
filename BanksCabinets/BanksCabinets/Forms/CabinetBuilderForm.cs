@@ -384,24 +384,32 @@ namespace BanksCabinets.Forms
         private void newJobButton_Click(object sender, EventArgs e)
         {
             NewJobForm form = new NewJobForm(connString, conn, command);
-            form.ShowDialog();
-            currentJob = form.GetJob();
-            readJobData();
-            
+            DialogResult newJobResult = form.ShowDialog();
+            if (newJobResult == DialogResult.OK)
+            {
+                form.ShowDialog();
+                currentJob = form.GetJob();
+                readJobData();
+            }
         }
 
         private void openJobButton_Click(object sender, EventArgs e)
         {
             //OpenJobForm form = new OpenJobForm();
             OpenJobForm form = new OpenJobForm(connString, conn, command);
-            form.ShowDialog();
-            currentJob = form.job;
-            readJobData();
+            DialogResult openJobResult = form.ShowDialog();
+            if (openJobResult == DialogResult.OK)
+            {
+                currentJob = form.GetJob();
+                readJobData();
+               // MessageBox.Show("User clicked OK button");
+                //jobNameLabel.Text = currentJob;
+            }
         }
 
         private void readJobData()
         {            
-            jobNameTextBox.Text = currentJob;
+            jobNameLabel.Text = currentJob;
 
             command.CommandText = "SELECT * from customer where jobname = '" + currentJob + "'";
 
