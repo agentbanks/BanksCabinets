@@ -73,7 +73,6 @@
             // 
             // saveJobButton
             // 
-            this.saveJobButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.saveJobButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveJobButton.Location = new System.Drawing.Point(189, 338);
             this.saveJobButton.Name = "saveJobButton";

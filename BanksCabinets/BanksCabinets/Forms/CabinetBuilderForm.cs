@@ -55,9 +55,20 @@ namespace BanksCabinets.Forms
 
         #endregion
 
+        List<Template> templatesList = new List<Template>();
+        
+        List<Template> baseTemplatesList = new List<Template>();
+        List<Template> uppersTemplatesList = new List<Template>();
+        List<Template> tallTemplatesList = new List<Template>();
+        List<Template> officeTemplatesList = new List<Template>();
+        List<Template> vanityTemplatesList = new List<Template>();
+        List<Template> toPopulate = new List<Template>();
         #region Cabinet Type Button Vars
         string selectedCabinetType;
+        
         List<Button> cabinetTypeButtonList = new List<Button>();
+
+
         int cabinetTypeButtonHorizontal = 225;
         int cabinetTypeButtonVertical = 317;
         int cabinetTypeButtonLength = 90;
@@ -99,15 +110,16 @@ namespace BanksCabinets.Forms
         public CabinetBuilderForm()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
+           // this.WindowState = FormWindowState.Maximized;
             //ReadJobInfo(some job number);
             
-            CreateCabinetButtons();
+            //CreateCabinetButtons();
             CreateCabinetTypeButtons();
             
             //Material dropdown box replaced material buttons
             ReadMaterial();
             //CreateMaterialButtons();
+            readTemplates();
             
             CreateGoodSideButtons();
             CreateThicknessButtons();
@@ -121,6 +133,8 @@ namespace BanksCabinets.Forms
         private void CreateCabinetButtons()
         {
             //Need to read in job info first and then create amount of buttons based on job
+
+            clearCabinetButtons();
 
             cabinetButtons = new List<Button>();
             Font cabinetButtonFont = ChangeFontSize(SystemFonts.DefaultFont, cabinetButtonFontSize);
@@ -149,6 +163,20 @@ namespace BanksCabinets.Forms
                 cabinetButtons.Add(button);
             }
 
+        }
+
+        private void clearCabinetButtons()
+        {
+            if (cabinetButtons != null)
+            {
+                cabinetButtonHorizontal = 225;
+                cabinetButtonVertical = 205;
+                
+                foreach (Button btn in cabinetButtons)
+                {
+                    this.tabPage1.Controls.Remove(btn);
+                }
+            }
         }
 
         private void UpdateCabinetButtons(){}
@@ -236,6 +264,7 @@ namespace BanksCabinets.Forms
 
             selectedCabinetType = button.Text;
 
+            populateTemplateListBox(selectedCabinetType);
         }
 
         private void CreateMaterialButtons()
@@ -385,17 +414,19 @@ namespace BanksCabinets.Forms
         {
             NewJobForm form = new NewJobForm(connString, conn, command);
             DialogResult newJobResult = form.ShowDialog();
-            if (newJobResult == DialogResult.OK)
-            {
-                form.ShowDialog();
+            //if (newJobResult == DialogResult.OK)
+            
+               // form.ShowDialog();
+               //  MessageBox.Show("User clicked OK button");
                 currentJob = form.GetJob();
                 readJobData();
-            }
+            
         }
 
         private void openJobButton_Click(object sender, EventArgs e)
         {
             //OpenJobForm form = new OpenJobForm();
+            
             OpenJobForm form = new OpenJobForm(connString, conn, command);
             DialogResult openJobResult = form.ShowDialog();
             if (openJobResult == DialogResult.OK)
@@ -437,7 +468,14 @@ namespace BanksCabinets.Forms
             }
 
             conn.Close();
+           // MessageBox.Show(numCabinets.ToString());
+            CreateCabinetButtons();
         }
+
+       /* private void newJobForm_closed(object sender, EventArgs e)
+        {
+
+        }*/
 
         private void addMaterialButton_Click(object sender, EventArgs e)
         {
@@ -488,6 +526,235 @@ namespace BanksCabinets.Forms
             conn.Close();
         }
 
+
+        private void readTemplates()
+        {
+
+            string cabinetType, template;
+            bool hasGlassDoors, isBoxDrawer, hasToeKick;
+            int numGoodSides, adjustableShelves, fixedShelves, stainGradeShelves, rollouts, numOpenings;
+            double goodSideThickness, width, height, depth, topRail,middleRail1, middleRail2, middleRail3, middleRail4, bottomRail,
+                rightStyle, leftStyle, middleStyle, middleShelfWidth, middleShelfHeight, middleShelfDepth;
+          //  double[] middleRails = new double[4];
+
+            command.CommandText = "SELECT * from templates";
+
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                
+
+                template = reader["template"].ToString();
+                cabinetType = reader["cabinetType"].ToString();
+               // MessageBox.Show(reader["hasGlassDoors"].ToString());
+                hasGlassDoors = reader.GetBoolean(reader.GetOrdinal("hasglassdoors"));
+                //MessageBox.Show(hasGlassDoors.ToString());
+                isBoxDrawer = reader.GetBoolean(reader.GetOrdinal("isboxdrawer"));
+                hasToeKick = reader.GetBoolean(reader.GetOrdinal("hastoekick"));
+               
+                numGoodSides = Int32.Parse(reader["numgoodsides"].ToString());
+                adjustableShelves = Int32.Parse(reader["adjustableshelves"].ToString());
+                fixedShelves = Int32.Parse(reader["fixedshelves"].ToString());
+                stainGradeShelves = Int32.Parse(reader["staingradeshelves"].ToString());
+                rollouts = Int32.Parse(reader["rollouts"].ToString());
+
+                goodSideThickness = Double.Parse(reader["goodsidethickness"].ToString());
+                width = Double.Parse(reader["width"].ToString());
+                height = Double.Parse(reader["height"].ToString());
+                depth = Double.Parse(reader["depth"].ToString());
+
+                
+
+                topRail = Double.Parse(reader["toprail"].ToString());                
+                bottomRail = Double.Parse(reader["bottomrail"].ToString());
+
+               // middleRails[0] = Double.Parse(reader["middlerail1"].ToString());
+                middleRail1 = reader.GetDouble(reader.GetOrdinal("middlerail1"));
+                middleRail2 = Double.Parse(reader["middlerail2"].ToString());
+                middleRail3 = Double.Parse(reader["middlerail3"].ToString());
+                middleRail4 = Double.Parse(reader["middlerail4"].ToString());
+               // MessageBox.Show(middleRail2.ToString());  
+                rightStyle = Double.Parse(reader["rightstyle"].ToString());
+                leftStyle = Double.Parse(reader["leftstyle"].ToString());
+                middleStyle = Double.Parse(reader["middlestyle"].ToString());
+                middleShelfWidth = Double.Parse(reader["middleshelfwidth"].ToString());
+                middleShelfHeight = Double.Parse(reader["middleshelfheight"].ToString());
+                middleShelfDepth = Double.Parse(reader["middleshelfdepth"].ToString());
+
+                numOpenings = Int32.Parse(reader["numopenings"].ToString());
+                
+                   
+
+                Template myTemp = new Template(cabinetType, template, hasGlassDoors, isBoxDrawer, hasToeKick, numGoodSides, adjustableShelves, fixedShelves, stainGradeShelves, rollouts, numOpenings, goodSideThickness, width, height, depth, topRail, middleRail1, middleRail2, middleRail3, middleRail4, bottomRail,
+                rightStyle, leftStyle, middleStyle, middleShelfWidth, middleShelfHeight, middleShelfDepth);
+                
+                switch (myTemp.cabinetType.ToLower())
+                {
+                    case "base":
+                        baseTemplatesList.Add(myTemp);
+                       
+                        break;
+                    case "uppers":
+                        uppersTemplatesList.Add(myTemp);
+                        
+                        break;
+                    case "tall":
+                        tallTemplatesList.Add(myTemp);
+                       
+                        break;
+                    case "office":
+                        officeTemplatesList.Add(myTemp);
+                        
+                        break;
+                    default:
+                        vanityTemplatesList.Add(myTemp);
+                        
+                        break;
+                }
+               // templatesList.Add(myTemp);
+              //  MessageBox.Show(myTemp.middleRail2.ToString());  
+
+            }
+
+            conn.Close();
+        }
+
+        private void populateTemplateListBox(string cabinetType)
+        {
+
+            templateListBox.Items.Clear();
+
+            /*foreach (Template temp in templatesList)
+            {
+                if (temp.cabinetType.ToLower() == cabinetType.ToLower())
+                {
+                    templateListBox.Items.Add(temp.template);
+                }
+            }*/
+
+            
+
+            switch (cabinetType.ToLower())
+            {            
+            
+                case "base":
+                    toPopulate = baseTemplatesList;
+                     
+                    break;
+                case "uppers":
+                    toPopulate = uppersTemplatesList;
+                    break;
+                case "tall":
+                    toPopulate = tallTemplatesList;
+                    break;
+                case "office":
+                    toPopulate = officeTemplatesList;
+                    break;
+                default:
+                    toPopulate = vanityTemplatesList;
+                    break;
+            }
+
+            foreach (Template tmp in toPopulate)
+            {
+                templateListBox.Items.Add(tmp);
+                //MessageBox.Show(tmp.numOpenings.ToString() + " " +tmp.middleRail3.ToString());                 
+            }
+
+        }
+
+        private void selectedTemplateChanged(object sender, EventArgs e)
+        {
+            Template aja = (Template) templateListBox.SelectedItem;
+            //MessageBox.Show(aja.middleRail2.ToString());
+            
+            try
+            {
+                cabinetDimensionWidthTextBox.Text = aja.width.ToString();
+                cabinetDimensionHeightTextBox.Text = aja.height.ToString();
+                cabinetDimensionDepthTextBox.Text = aja.width.ToString();
+
+                boxDrawerCheckBox.Checked = aja.isBoxDrawer;
+                toeKickCheckBox.Checked = aja.hasToeKick;
+
+                customGoodSideTextBox.Text = aja.goodSideThickness.ToString();
+                topRailTextBox.Text = aja.topRail.ToString();
+                //middleRailTextBox.Text = aja.middleRail.ToString(); //remove
+                bottomRailTextBox.Text = aja.bottomRail.ToString();
+
+                middleRail1TextBox.Text = aja.middleRail1.ToString();
+                middleRail2TextBox.Text = aja.middleRail2.ToString();
+                middleRail3TextBox.Text = aja.middleRail3.ToString();
+                middleRail4TextBox.Text = aja.middleRail4.ToString();
+                
+                adjustableShelvesTextBox.Text = aja.adjustableShelves.ToString();
+                fixedShelvesTextBox.Text = aja.fixedShelves.ToString();
+                stainGradeShelvesTextBox.Text = aja.stainGradeShelves.ToString();
+                rolloutsTextBox.Text = aja.rollouts.ToString();
+
+                numOpeningsComboBox.Text = aja.numOpenings.ToString();
+
+                rightStyleTextBox.Text = aja.rightStyle.ToString();
+                leftStyleTextBox.Text = aja.leftStyle.ToString();
+                middleStyleTextBox.Text = aja.middleStyle.ToString(); 
+
+                widthMiddleShelfTextBox.Text = aja.middleShelfWidth.ToString();
+                heightMiddleShelfTextBox.Text = aja.middleShelfHeight.ToString();
+                depthMiddleShelfTextBox.Text = aja.middleShelfDepth.ToString();
+                
+                
+            }
+            catch (Exception ex)
+            {
+            }
+            updateOpeningGroups(null, null);
+        }
+
+        private void updateOpeningGroups(object sender, EventArgs e)
+        {
+            int secondOpeningGroupPosition = 267;
+            int distBetPanels = 137;
+
+            List<Panel> openingPanels = new List<Panel>();
+            openingPanels.Add(panel1);
+            openingPanels.Add(panel2);
+            openingPanels.Add(panel3);
+            openingPanels.Add(panel4);
+            openingPanels.Add(panel5);
+
+            foreach (Panel myPanel in openingPanels)
+            {
+                if (openingPanels.IndexOf(myPanel) < Int32.Parse(numOpeningsComboBox.Text))
+                {
+                    myPanel.Visible = true;
+                }
+                else
+                {
+                    myPanel.Visible = false;
+                }
+
+                
+            }
+
+            Point pt = panel2.Location;
+
+            pt.Offset(0, distBetPanels * (Int32.Parse(numOpeningsComboBox.Text) - 1));
+
+            panel6.Location = pt;
+
+           // bottomrailLabel.Location.Offset(0, secondOpeningGroupPosition * (Int32.Parse(numOpeningsComboBox.Text) - 1));
+        }
+
+
+       
         private void addTemplateButton_Click(object sender, EventArgs e)
         {
 
@@ -501,6 +768,76 @@ namespace BanksCabinets.Forms
                 return true;
             else
                 return false;
+        }
+
+        private void checkHeightTotal(object sender, EventArgs e)
+        {
+            double calculatedHeight = 0;
+
+            List <TextBox> toAdd = new List<TextBox>();
+            toAdd.Add(topRailTextBox);
+            toAdd.Add(opening1TextBox);
+            toAdd.Add(middleRail1TextBox);
+            toAdd.Add(opening2TextBox);
+            toAdd.Add(middleRail2TextBox);
+            toAdd.Add(opening3TextBox);
+            toAdd.Add(middleRail3TextBox);
+            toAdd.Add(opening4TextBox);
+            toAdd.Add(middleRail4TextBox);
+            toAdd.Add(opening5TextBox);
+            toAdd.Add(bottomRailTextBox);
+
+            try
+            {
+                foreach (TextBox myTB in toAdd)
+                {
+                    if (myTB.Visible.Equals(true))
+                    {
+                        calculatedHeight += Double.Parse(myTB.Text);
+                    }
+                }
+            
+
+            totalvsheight.Text = "Cabinet Height: " + cabinetDimensionHeightTextBox.Text + "\nCalculated Height: " + calculatedHeight;
+            if (Double.Parse(cabinetDimensionHeightTextBox.Text) != calculatedHeight)
+            {
+                totalvsheight.Font = new Font(totalvsheight.Font.Name, totalvsheight.Font.Size, FontStyle.Bold);
+                totalvsheight.ForeColor = Color.Red;
+            }
+            else
+            {
+                totalvsheight.Font = new Font(totalvsheight.Font.Name, totalvsheight.Font.Size);
+                totalvsheight.ForeColor = Color.Black;
+            }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton8_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label120_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
       

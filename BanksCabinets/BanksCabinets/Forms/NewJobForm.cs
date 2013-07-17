@@ -61,13 +61,13 @@ namespace BanksCabinets.Forms
 
             job = jobNameTextBox.Text;
             contractor = contractorComboBox.Text;
-
+            //this.saveJobButton.DialogResult = DialogResult.None;
             bool isFormComplete = CheckInput();
             bool isUnique = CheckUniqueJobName();
 
             if (isFormComplete && isUnique)
             {
-                job = jobNameTextBox.Text;
+                //job = jobNameTextBox.Text;
                // contractor = contractorComboBox.Text;
                 if (string.IsNullOrEmpty(zipTextBox.Text))
                     zipTextBox.Text = "0";
@@ -92,7 +92,7 @@ namespace BanksCabinets.Forms
                 conn.Close();
 
 
-
+                
                 this.Close();
             }
             else

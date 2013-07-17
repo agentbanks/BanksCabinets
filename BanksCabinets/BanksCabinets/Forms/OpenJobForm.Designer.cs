@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OpenJobForm));
             this.label1 = new System.Windows.Forms.Label();
             this.openJobButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.ContractorTreeView = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.searchBox = new System.Windows.Forms.TextBox();
             this.contractorRadioButton = new System.Windows.Forms.RadioButton();
             this.jobRadioButton = new System.Windows.Forms.RadioButton();
@@ -87,6 +90,12 @@
             this.ContractorTreeView.Size = new System.Drawing.Size(697, 263);
             this.ContractorTreeView.TabIndex = 6;
             this.ContractorTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.contractorTreeView_AfterSelect);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Folder_Icon.png");
             // 
             // searchBox
             // 
@@ -165,5 +174,6 @@
         private System.Windows.Forms.RadioButton contractorRadioButton;
         private System.Windows.Forms.RadioButton jobRadioButton;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

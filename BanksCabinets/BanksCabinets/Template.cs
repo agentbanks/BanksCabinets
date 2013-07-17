@@ -7,16 +7,17 @@ namespace BanksCabinets
 {
     class Template
     {
-        string cabinetType, template;
-        bool hasGlassDoors, isBoxDrawer, hasToeKick;
-        int numGoodSides, adjustableShelves, fixedShelves, stainGradeShelves, rollouts;
-        double goodSideThickness, width, height, depth, topRail, middleRail, bottomRail,
+        public string cabinetType, template;
+        public bool hasGlassDoors, isBoxDrawer, hasToeKick;
+        public int numGoodSides, adjustableShelves, fixedShelves, stainGradeShelves, rollouts, numOpenings;
+        public double goodSideThickness, width, height, depth, topRail, middleRail1, middleRail2, middleRail3, middleRail4, bottomRail,
             rightStyle, leftStyle, middleStyle, middleShelfWidth, middleShelfHeight, middleShelfDepth;
+       // public double[] middleRails = new double[4];
 
 
          public Template(string cabinetType, string template, bool hasGlassDoors, bool isBoxDrawer, bool hasToeKick,
-            int numGoodSides, int adjustableShelves, int fixedShelves, int stainGradeShelves, int rollouts, double goodSideThickness, double width, double height,
-            double depth, double topRail, double middleRail, double bottomRail, double rightStyle, double leftStyle, double middleStyle, double middleShelfWidth,
+            int numGoodSides, int adjustableShelves, int fixedShelves, int stainGradeShelves, int rollouts, int numOpenings, double goodSideThickness, double width, double height,
+            double depth, double topRail, double middleRail1, double middleRail2, double middleRail3, double middleRail4, double bottomRail, double rightStyle, double leftStyle, double middleStyle, double middleShelfWidth,
             double middleShelfHeight, double middleShelfDepth)
         {            
             this.cabinetType = cabinetType;
@@ -33,8 +34,12 @@ namespace BanksCabinets
             this.width = width;
             this.height = height;
             this.depth = depth;
+            this.numOpenings = numOpenings;
             this.topRail = topRail;
-            this.middleRail = middleRail;
+            this.middleRail1 = middleRail1;
+            this.middleRail2 = middleRail2;
+            this.middleRail3 = middleRail3;
+            this.middleRail4 = middleRail4;
             this.bottomRail = bottomRail;
             this.rightStyle = rightStyle;
             this.leftStyle = leftStyle;
@@ -43,5 +48,10 @@ namespace BanksCabinets
             this.middleShelfHeight = middleShelfHeight;
             this.middleShelfDepth = middleShelfDepth;
         }
+
+         public override string ToString()
+         {
+             return template;
+         }
     }
 }

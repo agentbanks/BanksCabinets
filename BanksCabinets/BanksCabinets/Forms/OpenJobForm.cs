@@ -65,6 +65,7 @@ namespace BanksCabinets.Forms
 
                     node = new TreeNode(currentContractor);
                     node.Name = currentContractor;
+                    node.ImageIndex = 0;
                     ContractorTreeView.Nodes.Add(node);
                    
                     node.Nodes.Add(currentJobname);
